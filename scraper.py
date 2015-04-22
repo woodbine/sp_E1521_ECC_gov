@@ -29,7 +29,7 @@ for link in links:
 	url = link['href']
 	if '.xls' in url and '/Your-Council/Council-Spending/Documents/' in url:
 		title = link.contents[0]
-		title = title.encode('utf8').strip().replace("\n", " ").replace("\r", " ").replace("\t", " ")
+		title = title.encode('ascii',errors='ignore').strip().replace("\n", " ").replace("\r", " ").replace("\t", " ")
 		# create the right strings for the new filename
 		csvYr = title.split(' ')[-1]
 		csvMth = title.split(' ')[-2][:3]
