@@ -28,7 +28,7 @@ links = soup.findAll('a', href=True)
 for link in links:
 	url = link['href']
 	if '.xls' in url and '/Your-Council/Council-Spending/Documents/' in url:
-		title = link.text
+		title = link.contents[0]
 		# create the right strings for the new filename
 		csvYr = title.split(' ')[-1]
 		csvMth = title.split(' ')[-2][:3]
