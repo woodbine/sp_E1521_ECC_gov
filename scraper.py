@@ -26,7 +26,7 @@ soup = BeautifulSoup(html)
 links = soup.findAll('a', href=True)
 
 for link in links:
-	url = link['href']
+	url = 'http://www.essex.gov.uk' + link['href']
 	if '.xls' in url and '/Your-Council/Council-Spending/Documents/' in url:
 		title = link.contents[0]
 		title = title.encode('ascii',errors='ignore').strip().replace("\n", " ").replace("\r", " ").replace("\t", " ")
