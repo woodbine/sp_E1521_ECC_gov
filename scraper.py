@@ -23,8 +23,7 @@ html = urllib2.urlopen(url)
 soup = BeautifulSoup(html)
 
 # find all entries with the required class
-block = soup.find('div',{'class','welcome blank-wp'})
-links = block.findAll('a', href=True)
+links = soup.findAll('a', href=True)
 
 for link in links:
 	url = link['href']
