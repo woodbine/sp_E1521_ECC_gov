@@ -100,19 +100,22 @@ links = soup.findAll('a', href=True)
 for link in links:
     url = 'http://www.essex.gov.uk' + link['href']
     if '.xls' in url and '/Your-Council/Council-Spending/Documents/' in url:
-        title = link.contents[0]
+        title = link.text
         title = title.encode('ascii',errors='ignore').strip().replace("\n", " ").replace("\r", " ").replace("\t", " ")
         csvYr = title.split(' ')[-1][-4:]
         if 'April to June September 2011' in title:
             title = 'April to June'
-        if 'January' in title or 'March' in title:
+        if 'January' in title and 'March' in title:
                 csvMth = 'Q1'
-        if 'April' in title or 'June' in title:
+        if 'April' in title and 'June' in title:
                 csvMth = 'Q2'
-        if 'July' in title or 'September' in title:
+        if 'July' in title and 'September' in title:
                 csvMth = 'Q3'
-        if 'October' in title or 'December:' in title:
+        if 'October' in title and 'December' in title:
                 csvMth = 'Q4'
+        if u'July to August 2016' in link.text:
+            csvMth = 'Q0'
+            csvYr = '2016'
         csvMth = convert_mth_strings(csvMth.upper())
         data.append([csvYr, csvMth, url])
 
